@@ -1,32 +1,32 @@
 using System.Runtime.Serialization.Formatters.Binary;
 
 /// <summary>
-/// Предоставляет методы для работы с коллекцией музейных экспонатов.
+/// РџСЂРµРґРѕСЃС‚Р°РІР»СЏРµС‚ РјРµС‚РѕРґС‹ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РєРѕР»Р»РµРєС†РёРµР№ РјСѓР·РµР№РЅС‹С… СЌРєСЃРїРѕРЅР°С‚РѕРІ.
 /// </summary>
 public static class MuseumManager
 {
-    // Создание нового музейного экспоната
+    // РЎРѕР·РґР°РЅРёРµ РЅРѕРІРѕРіРѕ РјСѓР·РµР№РЅРѕРіРѕ СЌРєСЃРїРѕРЅР°С‚Р°
     public static MuseumExhibit CreateExhibit(List<MuseumExhibit> listOfExhibits)
     {
         int id;
         do
         {
-            id = InputValidator.ReadInt("Введите ID (уникальный): ");
+            id = InputValidator.ReadInt("Р’РІРµРґРёС‚Рµ ID (СѓРЅРёРєР°Р»СЊРЅС‹Р№): ");
             if (listOfExhibits.Any(e => e.Id == id))
-                Console.WriteLine("Экспонат с таким ID уже существует!");
+                Console.WriteLine("Р­РєСЃРїРѕРЅР°С‚ СЃ С‚Р°РєРёРј ID СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚!");
             else
                 break;
         } while (true);
 
-        string name = InputValidator.ReadNonEmptyString("Введите название: ");
-        int year = InputValidator.ReadInt("Введите год создания: ");
-        double value = InputValidator.ReadDouble("Введите оценочную стоимость: ");
-        bool onDisplay = InputValidator.ReadBool("Находится ли экспонат в экспозиции");
+        string name = InputValidator.ReadNonEmptyString("Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ: ");
+        int year = InputValidator.ReadInt("Р’РІРµРґРёС‚Рµ РіРѕРґ СЃРѕР·РґР°РЅРёСЏ: ");
+        double value = InputValidator.ReadDouble("Р’РІРµРґРёС‚Рµ РѕС†РµРЅРѕС‡РЅСѓСЋ СЃС‚РѕРёРјРѕСЃС‚СЊ: ");
+        bool onDisplay = InputValidator.ReadBool("РќР°С…РѕРґРёС‚СЃСЏ Р»Рё СЌРєСЃРїРѕРЅР°С‚ РІ СЌРєСЃРїРѕР·РёС†РёРё");
 
         return new MuseumExhibit(id, name, year, value, onDisplay);
     }
 
-    // Десериализация БД в список музейных экспонатов
+    // Р”РµСЃРµСЂРёР°Р»РёР·Р°С†РёСЏ Р‘Р” РІ СЃРїРёСЃРѕРє РјСѓР·РµР№РЅС‹С… СЌРєСЃРїРѕРЅР°С‚РѕРІ
     public static List<MuseumExhibit> Load(string filename)
     {
         if (!File.Exists(filename)) return new List<MuseumExhibit>();
@@ -35,7 +35,7 @@ public static class MuseumManager
         return (List<MuseumExhibit>) bf.Deserialize(fs);
     }
 
-    //Сохранение текущего списка экспонатов в файл
+    // РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РµРєСѓС‰РµРіРѕ СЃРїРёСЃРєР° СЌРєСЃРїРѕРЅР°С‚РѕРІ РІ С„Р°Р№Р»
     public static void Save(List<MuseumExhibit> listOfExhibits, string filename)
     {
         using var fs = new FileStream(filename, FileMode.Create);
@@ -43,85 +43,85 @@ public static class MuseumManager
         bf.Serialize(fs, listOfExhibits);
     }
 
-    // Просмотр содержимого БД
+    // РџСЂРѕСЃРјРѕС‚СЂ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ Р‘Р”
     public static void View(List<MuseumExhibit> listOfExhibits)
     {
         listOfExhibits.ForEach(e => Console.WriteLine(e));
     }
 
-    // Добавление музейного экспоната в список
+    // Р”РѕР±Р°РІР»РµРЅРёРµ РјСѓР·РµР№РЅРѕРіРѕ СЌРєСЃРїРѕРЅР°С‚Р° РІ СЃРїРёСЃРѕРє
     public static void Add(List<MuseumExhibit> listOfExhibits, MuseumExhibit exhibit)
     {
         listOfExhibits.Add(exhibit);
     }
 
-    // Удаление элемента по ключу
+    // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РєР»СЋС‡Сѓ
     public static void Delete(List<MuseumExhibit> listOfExhibits, int id)
     {
         var exhibitToRemove = listOfExhibits.FirstOrDefault(e => e.Id == id);
         if (exhibitToRemove != null) listOfExhibits.Remove(exhibitToRemove);
-        else Console.WriteLine("ID не встречен. Ни один элемент не удалён.");
+        else Console.WriteLine("ID РЅРµ РІСЃС‚СЂРµС‡РµРЅ. РќРё РѕРґРёРЅ СЌР»РµРјРµРЅС‚ РЅРµ СѓРґР°Р»С‘РЅ.");
     }
 
-    // Получение экспонатов с оценочной стоимостью больше заданной
+    // РџРѕР»СѓС‡РµРЅРёРµ СЌРєСЃРїРѕРЅР°С‚РѕРІ СЃ РѕС†РµРЅРѕС‡РЅРѕР№ СЃС‚РѕРёРјРѕСЃС‚СЊСЋ Р±РѕР»СЊС€Рµ Р·Р°РґР°РЅРЅРѕР№
     public static IEnumerable<MuseumExhibit> GetExpensiveExhibits(List<MuseumExhibit> listOfExhibits, double minValue) =>
         listOfExhibits.Where(e => e.EstimatedValue >= minValue);
 
     
-    // Получение экспонатов с годом создания раньше заданного
+    // РџРѕР»СѓС‡РµРЅРёРµ СЌРєСЃРїРѕРЅР°С‚РѕРІ СЃ РіРѕРґРѕРј СЃРѕР·РґР°РЅРёСЏ СЂР°РЅСЊС€Рµ Р·Р°РґР°РЅРЅРѕРіРѕ
     public static IEnumerable<MuseumExhibit> GetOldExhibits(List<MuseumExhibit> listOfExhibits, int beforeYear) =>
         listOfExhibits.Where(e => e.Year < beforeYear);
 
-    // Подсчёт количества выставляемых экспонатов
+    // РџРѕРґСЃС‡С‘С‚ РєРѕР»РёС‡РµСЃС‚РІР° РІС‹СЃС‚Р°РІР»СЏРµРјС‹С… СЌРєСЃРїРѕРЅР°С‚РѕРІ
     public static int CountOnDisplay(List<MuseumExhibit> listOfExhibits) =>
         listOfExhibits.Count(e => e.IsOnDisplay);
 
-    // Подсчёт средней цены экспонатов
+    // РџРѕРґСЃС‡С‘С‚ СЃСЂРµРґРЅРµР№ С†РµРЅС‹ СЌРєСЃРїРѕРЅР°С‚РѕРІ
     public static double AverageValue(List<MuseumExhibit> listOfExhibits) =>
         listOfExhibits.Average(e => e.EstimatedValue);
 
-    // Меню запросов
+    // РњРµРЅСЋ Р·Р°РїСЂРѕСЃРѕРІ
     public static void RunQueries(List<MuseumExhibit> listOfExhibits)
     {
-        Console.WriteLine("1. Экспонаты дороже заданной суммы");
-        Console.WriteLine("2. Экспонаты до заданного года");
-        Console.WriteLine("3. Кол-во экспонатов на экспозиции");
-        Console.WriteLine("4. Средняя стоимость экспонатов");
+        Console.WriteLine("1. Р­РєСЃРїРѕРЅР°С‚С‹ РґРѕСЂРѕР¶Рµ Р·Р°РґР°РЅРЅРѕР№ СЃСѓРјРјС‹");
+        Console.WriteLine("2. Р­РєСЃРїРѕРЅР°С‚С‹ РґРѕ Р·Р°РґР°РЅРЅРѕРіРѕ РіРѕРґР°");
+        Console.WriteLine("3. РљРѕР»-РІРѕ СЌРєСЃРїРѕРЅР°С‚РѕРІ РЅР° СЌРєСЃРїРѕР·РёС†РёРё");
+        Console.WriteLine("4. РЎСЂРµРґРЅСЏСЏ СЃС‚РѕРёРјРѕСЃС‚СЊ СЌРєСЃРїРѕРЅР°С‚РѕРІ");
 
         switch (Console.ReadLine())
         {
             case "1":
-                Console.Write("Минимальная стоимость: ");
+                Console.Write("РњРёРЅРёРјР°Р»СЊРЅР°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ: ");
                 double min = double.Parse(Console.ReadLine());
                 var exspensiveList = MuseumManager.GetExpensiveExhibits(listOfExhibits, min);
                 if (exspensiveList.Count() == 0)
                 {
-                    Console.WriteLine("Нет экспонатов дороже указанной стоимости.");
+                    Console.WriteLine("РќРµС‚ СЌРєСЃРїРѕРЅР°С‚РѕРІ РґРѕСЂРѕР¶Рµ СѓРєР°Р·Р°РЅРЅРѕР№ СЃС‚РѕРёРјРѕСЃС‚Рё.");
                 }
                 foreach (var e in exspensiveList) Console.WriteLine(e);
                 break;
             case "2":
-                Console.Write("До какого года: ");
+                Console.Write("Р”Рѕ РєР°РєРѕРіРѕ РіРѕРґР°: ");
                 int year = int.Parse(Console.ReadLine());
                 var oldList = MuseumManager.GetOldExhibits(listOfExhibits, year);
                 if (oldList.Count() == 0)
                 {
-                    Console.WriteLine("Нет экспонатов старее указанной даты.");
+                    Console.WriteLine("РќРµС‚ СЌРєСЃРїРѕРЅР°С‚РѕРІ СЃС‚Р°СЂРµРµ СѓРєР°Р·Р°РЅРЅРѕР№ РґР°С‚С‹.");
                 }
                 foreach (var e in oldList) Console.WriteLine(e);
                 break;
             case "3":
-                Console.WriteLine("Доступных экспонатов на экспозиции: " + MuseumManager.CountOnDisplay(listOfExhibits));
+                Console.WriteLine("Р”РѕСЃС‚СѓРїРЅС‹С… СЌРєСЃРїРѕРЅР°С‚РѕРІ РЅР° СЌРєСЃРїРѕР·РёС†РёРё: " + MuseumManager.CountOnDisplay(listOfExhibits));
                 break;
             case "4":
                 if (listOfExhibits.Count() == 0)
                 {
-                    Console.WriteLine("Нет экспонатов для подсчёта средней стоимости.");
+                    Console.WriteLine("РќРµС‚ СЌРєСЃРїРѕРЅР°С‚РѕРІ РґР»СЏ РїРѕРґСЃС‡С‘С‚Р° СЃСЂРµРґРЅРµР№ СЃС‚РѕРёРјРѕСЃС‚Рё.");
                 }
-                else Console.WriteLine("Средняя стоимость: $" + MuseumManager.AverageValue(listOfExhibits).ToString("F2"));
+                else Console.WriteLine("РЎСЂРµРґРЅСЏСЏ СЃС‚РѕРёРјРѕСЃС‚СЊ: $" + MuseumManager.AverageValue(listOfExhibits).ToString("F2"));
                 break;
             default:
-                Console.WriteLine("Недопустимая операция!");
+                Console.WriteLine("РќРµРґРѕРїСѓСЃС‚РёРјР°СЏ РѕРїРµСЂР°С†РёСЏ!");
                 break;
         }
     }
