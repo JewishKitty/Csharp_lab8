@@ -1,7 +1,7 @@
 using System;
 
 /// <summary>
-/// Содержит методы валидации и безопасного ввода данных.
+/// РЎРѕРґРµСЂР¶РёС‚ РјРµС‚РѕРґС‹ РІР°Р»РёРґР°С†РёРё Рё Р±РµР·РѕРїР°СЃРЅРѕРіРѕ РІРІРѕРґР° РґР°РЅРЅС‹С….
 /// </summary>
 public static class InputValidator
 {
@@ -14,7 +14,7 @@ public static class InputValidator
             if (int.TryParse(Console.ReadLine(), out value))
                 return value;
 
-            Console.WriteLine($"Введите целое число!");
+            Console.WriteLine($"Р’РІРµРґРёС‚Рµ С†РµР»РѕРµ С‡РёСЃР»Рѕ!");
         } while (true);
     }
 
@@ -27,7 +27,7 @@ public static class InputValidator
             if (double.TryParse(Console.ReadLine(), out value))
                 return value;
 
-            Console.WriteLine($"Введите вещественное число!");
+            Console.WriteLine($"Р’РІРµРґРёС‚Рµ РІРµС‰РµСЃС‚РІРµРЅРЅРѕРµ С‡РёСЃР»Рѕ!");
         } while (true);
     }
 
@@ -40,7 +40,7 @@ public static class InputValidator
             input = Console.ReadLine().Trim();
             if (!string.IsNullOrWhiteSpace(input)) return input;
 
-            Console.WriteLine("Поле не может быть пустым!");
+            Console.WriteLine("РџРѕР»Рµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј!");
         } while (true);
     }
 
@@ -48,12 +48,12 @@ public static class InputValidator
     {
         do
         {
-            Console.Write(prompt + " (1 — Да, 0 — Нет): ");
+            Console.Write(prompt + " (1 вЂ”РґР°, 0 вЂ” РЅРµС‚): ");
             string input = Console.ReadLine();
             if (input == "1") return true;
             if (input == "0") return false;
 
-            Console.WriteLine("Введите 1 или 0!");
+            Console.WriteLine("Р’РІРµРґРёС‚Рµ 1 РёР»Рё 0!");
         } while (true);
     }
 }
