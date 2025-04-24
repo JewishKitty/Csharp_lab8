@@ -1,6 +1,6 @@
 class Program
 {
-    // При создании первого экспоната будет созадаваться файл с данным названием и в последствии вся работа будет происходить с ним
+    // РџСЂРё СЃРѕР·РґР°РЅРёРё РїРµСЂРІРѕРіРѕ СЌРєСЃРїРѕРЅР°С‚Р° Р±СѓРґРµС‚ СЃРѕР·Р°РґР°РІР°С‚СЊСЃСЏ С„Р°Р№Р» СЃ РґР°РЅРЅС‹Рј РЅР°Р·РІР°РЅРёРµРј Рё РІ РїРѕСЃР»РµРґСЃС‚РІРёРё РІСЃСЏ СЂР°Р±РѕС‚Р° Р±СѓРґРµС‚ РїСЂРѕРёСЃС…РѕРґРёС‚СЊ СЃ РЅРёРј
     const string FileName = "exhibits.bin"; 
 
    
@@ -11,15 +11,15 @@ class Program
 
         while (true)
         {
-            // Если список пуст выводим сообщение
-            if (!listOfExhibits.Any()) Console.WriteLine("База данных пуста. Добавьте хотя бы один экспонат.");
+            // Р•СЃР»Рё СЃРїРёСЃРѕРє РїСѓСЃС‚ РІС‹РІРѕРґРёРј СЃРѕРѕР±С‰РµРЅРёРµ
+            if (!listOfExhibits.Any()) Console.WriteLine("Р‘Р°Р·Р° РґР°РЅРЅС‹С… РїСѓСЃС‚Р°. Р”РѕР±Р°РІСЊС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ СЌРєСЃРїРѕРЅР°С‚.");
 
-            Console.WriteLine("\nМеню:");
-            Console.WriteLine("1. Просмотр базы");
-            Console.WriteLine("2. Добавить экспонат");
-            Console.WriteLine("3. Удалить экспонат");
-            Console.WriteLine("4. Запросы");
-            Console.WriteLine("0. Выход");
+            Console.WriteLine("\nРњРµРЅСЋ:");
+            Console.WriteLine("1. РџСЂРѕСЃРјРѕС‚СЂ Р±Р°Р·С‹");
+            Console.WriteLine("2. Р”РѕР±Р°РІРёС‚СЊ СЌРєСЃРїРѕРЅР°С‚");
+            Console.WriteLine("3. РЈРґР°Р»РёС‚СЊ СЌРєСЃРїРѕРЅР°С‚");
+            Console.WriteLine("4. Р—Р°РїСЂРѕСЃС‹");
+            Console.WriteLine("0. Р’С‹С…РѕРґ");
 
             switch (Console.ReadLine())
             {
@@ -36,12 +36,12 @@ class Program
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Ошибка сохранения в файл: " + ex.Message);
+                        Console.WriteLine("РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ С„Р°Р№Р»: " + ex.Message);
                     }
                     break;
 
                 case "3":
-                    Console.Write("Введите ID: ");
+                    Console.Write("Р’РІРµРґРёС‚Рµ ID: ");
                     try 
                     { 
                         if (int.TryParse(Console.ReadLine(), out int id))
@@ -52,7 +52,7 @@ class Program
                     }
                     catch (Exception ex)
                     {
-                        Console.WriteLine("Ошибка сохранения в файл: " + ex.Message);
+                        Console.WriteLine("РћС€РёР±РєР° СЃРѕС…СЂР°РЅРµРЅРёСЏ РІ С„Р°Р№Р»: " + ex.Message);
                     }
                     break;
 
@@ -64,7 +64,7 @@ class Program
                     return;
 
                 default:
-                    Console.WriteLine("Недопустимая операция!");
+                    Console.WriteLine("РќРµРґРѕРїСѓСЃС‚РёРјР°СЏ РѕРїРµСЂР°С†РёСЏ!");
                     break;
             }
         }
