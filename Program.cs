@@ -1,18 +1,28 @@
+using System;
+
+/// <summary>
+/// Главный класс программы для управления базой данных музейных экспонатов
+/// </summary>
 class Program
 {
-    // При создании первого экспоната будет созадаваться файл с данным названием и в последствии вся работа будет происходить с ним
-    const string FileName = "exhibits.bin"; 
+    /// <summary>
+    /// Имя файла, в котором сохраняется база данных экспонатов
+    /// </summary>
+    private const string FileName = "exhibits.bin";
 
-   
+    /// <summary>
+    /// Точка входа в программу
+    /// Загружает базу данных и предоставляет меню для взаимодействия с коллекцией экспонатов
+    /// </summary>
     static void Main()
     {
-         
         var listOfExhibits = MuseumManager.Load(FileName);
 
         while (true)
         {
-            // Если список пуст выводим сообщение
-            if (!listOfExhibits.Any()) Console.WriteLine("База данных пуста. Добавьте хотя бы один экспонат.");
+            // Если список пуст, выводим сообщение
+            if (!listOfExhibits.Any())
+                Console.WriteLine("База данных пуста. Добавьте хотя бы один экспонат.");
 
             Console.WriteLine("\nМеню:");
             Console.WriteLine("1. Просмотр базы");
@@ -21,7 +31,7 @@ class Program
             Console.WriteLine("4. Запросы");
             Console.WriteLine("0. Выход");
 
-            switch (Console.ReadLine())
+            switch (InputValidator.ReadNonEmptyString("Введите номер операции: "))
             {
                 case "1":
                     MuseumManager.View(listOfExhibits);
@@ -41,14 +51,12 @@ class Program
                     break;
 
                 case "3":
-                    Console.Write("Введите ID: ");
-                    try 
-                    { 
-                        if (int.TryParse(Console.ReadLine(), out int id))
-                        {
+                    try
+                    {
+                            int id = InputValidator.ReadInt("Введите Id: ");
                             MuseumManager.Delete(listOfExhibits, id);
                             MuseumManager.Save(listOfExhibits, FileName);
-                        }
+                        
                     }
                     catch (Exception ex)
                     {
@@ -69,7 +77,4 @@ class Program
             }
         }
     }
-
-
-
 }
