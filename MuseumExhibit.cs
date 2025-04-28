@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 
 /// <summary>
-/// Представляет музейный экспонат с основными характеристиками.
+/// Представляет музейный экспонат с основными характеристиками
 /// </summary>
 [Serializable]
 public class MuseumExhibit
@@ -13,7 +13,10 @@ public class MuseumExhibit
     private double _estimatedValue;
     private bool _isOnDisplay;
 
-    // Свойства
+    //Свойства
+    /// <summary>
+    /// Уникальный дентификатор экспоната
+    /// </summary>
     public int Id
     {
         get => _id;
@@ -25,6 +28,9 @@ public class MuseumExhibit
         }
     }
 
+    /// <summary>
+    /// Название экспонат
+    /// </summary>
     public string Name
     {
         get => _name;
@@ -36,6 +42,9 @@ public class MuseumExhibit
         }
     }
 
+    /// <summary>
+    /// Год создания экспоната
+    /// </summary>
     public int Year
     {
         get => _year;
@@ -47,6 +56,9 @@ public class MuseumExhibit
         }
     }
 
+    /// <summary>
+    /// Оценочная стоимость экспоната
+    /// </summary>
     public double EstimatedValue
     {
         get => _estimatedValue;
@@ -58,14 +70,24 @@ public class MuseumExhibit
         }
     }
 
+    /// <summary>
+    /// Находится ли экспонат в экспозиции
+    /// </summary>
     public bool IsOnDisplay
     {
         get => _isOnDisplay;
         private set => _isOnDisplay = value;
     }
 
-    // Конструктор
-   
+    //Конструктор
+    /// <summary>
+    /// Инициализирует новый экземпляр класса MuseumExhibit с заданными характеристиками
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор экспоната</param>
+    /// <param name="name">Название экспоната</param>
+    /// <param name="year">Год создания экспоната</param>
+    /// <param name="estimatedValue">Оценочная стоимость экспоната</param>
+    /// <param name="isOnDisplay">Находится ли экспонат в экспозиции</param>
     public MuseumExhibit(int id, string name, int year, double estimatedValue, bool isOnDisplay)
     {
         this.Id = id;
@@ -75,7 +97,10 @@ public class MuseumExhibit
         this.IsOnDisplay = isOnDisplay;
     }
 
-    // Перегрузка метода ToString()
+    /// <summary>
+    /// Возвращает строковое представление экземпляра класса MuseumExhibit
+    /// </summary>
+    /// <returns>Строка с описанием всех свойств экспоната</returns>
     public override string ToString()
     {
         return $"ID: {Id}, Name: {Name}, Year: {Year}, Value: ${EstimatedValue:F2}, On Display: {IsOnDisplay}";
