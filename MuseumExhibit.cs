@@ -12,7 +12,25 @@ public class MuseumExhibit
     private int _year;
     private double _estimatedValue;
     private bool _isOnDisplay;
-
+    
+    //Конструктор
+    /// <summary>
+    /// Инициализирует новый экземпляр класса MuseumExhibit с заданными характеристиками
+    /// </summary>
+    /// <param name="id">Уникальный идентификатор экспоната</param>
+    /// <param name="name">Название экспоната</param>
+    /// <param name="year">Год создания экспоната</param>
+    /// <param name="estimatedValue">Оценочная стоимость экспоната</param>
+    /// <param name="isOnDisplay">Находится ли экспонат в экспозиции</param>
+    public MuseumExhibit(int id, string name, int year, double estimatedValue, bool isOnDisplay)
+    {
+        this.Id = id;
+        this.Name = name;
+        this.Year = year;
+        this.EstimatedValue = estimatedValue;
+        this.IsOnDisplay = isOnDisplay;
+    }
+    
     //Свойства
     /// <summary>
     /// Уникальный дентификатор экспоната
@@ -79,23 +97,7 @@ public class MuseumExhibit
         private set => _isOnDisplay = value;
     }
 
-    //Конструктор
-    /// <summary>
-    /// Инициализирует новый экземпляр класса MuseumExhibit с заданными характеристиками
-    /// </summary>
-    /// <param name="id">Уникальный идентификатор экспоната</param>
-    /// <param name="name">Название экспоната</param>
-    /// <param name="year">Год создания экспоната</param>
-    /// <param name="estimatedValue">Оценочная стоимость экспоната</param>
-    /// <param name="isOnDisplay">Находится ли экспонат в экспозиции</param>
-    public MuseumExhibit(int id, string name, int year, double estimatedValue, bool isOnDisplay)
-    {
-        this.Id = id;
-        this.Name = name;
-        this.Year = year;
-        this.EstimatedValue = estimatedValue;
-        this.IsOnDisplay = isOnDisplay;
-    }
+
 
     /// <summary>
     /// Возвращает строковое представление экземпляра класса MuseumExhibit
